@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Directory from './DirectoryComponent';
-import MyCarousel from './CarouselComponent';
-import CampsiteInfo from './CampsiteInfoComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
@@ -16,8 +14,6 @@ class Main extends Component {
       campsites: CAMPSITES,
     }
   }
-
-  
 
   render() {
     const HomePage = () => {
