@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
 import Directory from './DirectoryComponent';
 import MyCarousel from './CarouselComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
+import Home from './HomeComponent';
+import About from './AboutComponent';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { CAMPSITES } from '../shared/campsites';
 
 class Main extends Component {
@@ -10,27 +14,30 @@ class Main extends Component {
     super(props);
     this.state = {
       campsites: CAMPSITES,
-      selectedCampsite: null
     }
   }
 
-    onCampsiteSelect(campsite) {
-        this.setState({selectedCampsite: campsite});
-    }
+  
 
   render() {
+    const HomePage = () => {
       return (
-          <div>
-              <Navbar dark color="primary">
-              <div className="container">
-                  <NavbarBrand href="/">PJ Fdez</NavbarBrand>
-              </div>
-              </Navbar>
-              <MyCarousel />
-              <Directory campsites={this.state.campsites} onClick={campsiteId => this.onCampsiteSelect(campsiteId)}/>
-              <CampsiteInfo campsite={this.state.campsites.filter(campsite => campsite.id === this.state.selectedCampsite)[0]} />
-          </div>
+        <Home />
       );
+    };
+
+    return (
+      <div>
+        <Header />
+        <Switch>
+          <Route path='/home' component={HomePage} />
+          <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
+          <Route path='/aboutus' render={() => <About />} />
+          <Redirect to='/home' />
+        </Switch>
+        <Footer />
+      </div>
+    );
   }
 }
 
