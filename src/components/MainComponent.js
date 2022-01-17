@@ -4,6 +4,8 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import About from './AboutComponent';
+import Portfolio from './PortfolioComponent';
+import { ALBUMS } from '../shared/albums';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CAMPSITES } from '../shared/campsites';
 
@@ -11,7 +13,7 @@ class Main extends Component {
   constructor(props){
     super(props);
     this.state = {
-      campsites: CAMPSITES,
+      albums: ALBUMS,
     }
   }
 
@@ -24,10 +26,10 @@ class Main extends Component {
 
     return (
       <div>
-        <Header />
+        
         <Switch>
           <Route path='/home' component={HomePage} />
-          <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
+          <Route exact path='/portfolio' render={() => <Portfolio albums={this.state.albums} />} />
           <Route path='/aboutus' render={() => <About />} />
           <Redirect to='/home' />
         </Switch>

@@ -1,51 +1,57 @@
-import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import React from 'react';
+import { Card, CardBody, CardText, CardImg, CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
-class Portfolio extends Component {
-
-    renderSelectedCampsite(campsite) {
-        if (campsite){
-            return (
-                <Card>
-                    <CardImg top src={campsite.image} alt={campsite.name} />
-                    <CardBody>
-                        <CardTitle>{campsite.name}</CardTitle>
-                        <CardText>{campsite.description}</CardText>
-                    </CardBody>
-                </Card>
-            )
-        }
-        return <div />;
-    }
-
-    render(){
-        const directory = this.props.campsites.map(campsite => {
-            return (
-                <div key={campsite.id} className="col-md-5 m-1">
-                    <Card onClick={() => this.onCampsiteSelect(campsite)}>
-                        <CardImg width="100%" src={campsite.image} alt={campsite.name} />
-                        <CardImgOverlay>
-                            <CardTitle>{campsite.name}</CardTitle>
-                        </CardImgOverlay>
-                    </Card>
-                </div>
-            );
-        });
-
-        return(
-            <div className="container">
-                <div className="row">
-                    {directory} 
-                </div>
-                <div className="row">
-                    <div className="col-md-5 m-1">
-                        {this.renderSelectedCampsite(this.state.selectedCampsite)}
-                    </div>
-                </div>
-            </div>
-        );
-    }
+function RenderPortfolioItem({album}){
+    return(
+        <FadeTransform 
+            in
+            transformProps={{
+                exitTransform: 'scale(0.5) translateY(50%)'
+            }}>
+            <Card> 
+                <Link to={`/portfolio/${album.id}`}>
+                <CardImg width="100%" src={album.image} alt={album.name} /></Link>
+                <CardBody>
+                    <Link to={`/portfolio/${album.id}`}><CardTitle>{album.name}</CardTitle></Link>
+                    <CardText>
+                        <i className="fa fa-image fa-lg" /> {album.count} &nbsp;&nbsp;&nbsp;&nbsp;
+                        <i className="fa fa-calendar fa-lg" /> {album.date}
+                    </CardText>
+                </CardBody>
+            </Card> 
+        </FadeTransform>
+    );
 }
 
+function Portfolio(props){
+
+    const portfolio = props.albums.map(album => {
+        return( 
+            <div key={album.id} className="portfolio-grid-item">
+                <RenderPortfolioItem album={album} />
+            </div>
+        );
+    });
+
+    return(
+        <div className="container">
+            <div className="row row-center">
+                <div className="col">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Portfolio</BreadcrumbItem>
+                    </Breadcrumb>
+                    <h2>Portfolio</h2>
+                    <hr />
+                </div>
+            </div>
+            <div className="portfolio-grid-container">
+                {portfolio}
+            </div>
+        </div>
+    )  
+}
 
 export default Portfolio;

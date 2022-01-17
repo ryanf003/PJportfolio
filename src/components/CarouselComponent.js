@@ -7,34 +7,34 @@ class MyCarousel extends Component {
             <Carousel >
             <Carousel.Item>
                 <img
-                className="d-block w-100"
-                src='/assets/images/react-lake.jpg'
+                className=" w-100"
+                src='/assets/img/testcarousel.jpg'
                 alt="First slide"
                 />
                 <Carousel.Caption>
-                <h5>First slide label</h5>
+                <h3>Baby</h3>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                className="d-block w-100"
-                src='/assets/images/react-lake.jpg'
+                className=" w-100"
+                src='/assets/img/Family/fam-2.jpg'
                 alt="Second slide"
                 />
                 <Carousel.Caption>
-                <h5>Second slide label</h5>
+                <h3>Family</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                className="d-block w-100"
-                src="holder.js/800x400?text=Third slide&bg=e5e5e5"
+                className=" w-100"
+                src="/assets/img/Maternity/mat-4-land-home.jpg"
                 alt="Third slide"
                 />
                 <Carousel.Caption>
-                <h5>Third slide label</h5>
+                <h3>Maternity</h3>
                 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                 </Carousel.Caption>
             </Carousel.Item>
