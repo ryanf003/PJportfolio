@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import Directory from './DirectoryComponent';
-import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import About from './AboutComponent';
 import Portfolio from './PortfolioComponent';
+import AlbumContents from './AlbumContentsComponent';
 import { ALBUMS } from '../shared/albums';
+import { CONTENTS } from '../shared/contents';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { CAMPSITES } from '../shared/campsites';
+
 
 class Main extends Component {
   constructor(props){
     super(props);
     this.state = {
       albums: ALBUMS,
+      contents: CONTENTS
     }
   }
 
@@ -24,12 +25,22 @@ class Main extends Component {
       );
     };
 
+    const AlbumPhotos = ({match}) => {
+      return (
+          <AlbumContents
+              album={this.state.albums.filter(album => album.id === +match.params.albumId)[0]}
+              contents={this.state.contents.filter(content => content.albumid === +match.params.albumId)}
+          />
+      );
+    };
+
     return (
       <div>
         
         <Switch>
           <Route path='/home' component={HomePage} />
           <Route exact path='/portfolio' render={() => <Portfolio albums={this.state.albums} />} />
+          <Route path='/portfolio/:albumId' component={AlbumPhotos} />
           <Route path='/aboutus' render={() => <About />} />
           <Redirect to='/home' />
         </Switch>

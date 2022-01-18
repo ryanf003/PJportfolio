@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, CardBody, CardText, CardImg, CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import { Card, CardBody, CardImg, CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import { FadeTransform } from 'react-animation-components';
+import Header from './HeaderComponent';
 
 function RenderPortfolioItem({album}){
     return(
@@ -15,10 +16,6 @@ function RenderPortfolioItem({album}){
                 <CardImg width="100%" src={album.image} alt={album.name} /></Link>
                 <CardBody>
                     <Link to={`/portfolio/${album.id}`}><CardTitle>{album.name}</CardTitle></Link>
-                    <CardText>
-                        <i className="fa fa-image fa-lg" /> {album.count} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <i className="fa fa-calendar fa-lg" /> {album.date}
-                    </CardText>
                 </CardBody>
             </Card> 
         </FadeTransform>
@@ -36,19 +33,21 @@ function Portfolio(props){
     });
 
     return(
-        <div className="container">
-            <div className="row row-center">
-                <div className="col">
-                    <Breadcrumb>
-                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>Portfolio</BreadcrumbItem>
-                    </Breadcrumb>
-                    <h2>Portfolio</h2>
-                    <hr />
+        <div>
+            <Header />
+            <div className="container">
+                <div className="row row-center">
+                    <div className="col">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>Portfolio</BreadcrumbItem>
+                        </Breadcrumb>
+                        <h2>Portfolio</h2>
+                    </div>
                 </div>
-            </div>
-            <div className="portfolio-grid-container">
-                {portfolio}
+                <div className="portfolio-grid-container">
+                    {portfolio}
+                </div>
             </div>
         </div>
     )  

@@ -5,16 +5,10 @@ function IconBarComponent() {
         <div className="buttons">
             <ul className="navbar-nav">
                 <li className="navLink">
-                    <a href="http://instagram.com/"><span className='icon'><i className="fa fa-instagram" /></span></a>{' '}
+                    <a href="https://www.instagram.com/pj_fdz/"><span className='icon'><i className="fa fa-instagram" /></span></a>{' '}
                 </li>
                 <li className="navLink">
-                    <a href="http://www.facebook.com/"><span className='icon'><i className="fa fa-facebook-square" /></span></a>{' '}
-                </li>
-                <li className="navLink">
-                    <a href="http://twitter.com/"><span className='icon'><i className="fa fa-twitter" /></span></a>{' '}
-                </li>
-                <li className="navLink">
-                    <a href="http://youtube.com/"><span className='icon'><i className="fa fa-youtube" /></span></a>
+                    <a href="https://www.facebook.com/PjFdzPhoto"><span className='icon'><i className="fa fa-facebook-square" /></span></a>{' '}
                 </li>
             </ul>
         </div>
